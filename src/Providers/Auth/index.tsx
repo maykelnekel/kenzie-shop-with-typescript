@@ -1,4 +1,5 @@
 import { ReactNode, createContext, useContext, useState } from "react";
+import { History } from "history";
 import { api } from "../../Services/api";
 interface Token {
   token: string;
@@ -11,7 +12,7 @@ interface AuthProviderProps {
 interface SignInProps {
   userData: object;
   setError: (boolean: boolean) => boolean;
-  history: any; //NÃO SEI EXATAMENTE QUAL TYPE SETAR () => VOID NÃO FUNCIONA
+  history: History;
 }
 
 interface AuthProviderData {
