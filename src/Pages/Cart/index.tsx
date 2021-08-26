@@ -94,7 +94,9 @@ function Cart() {
                     <Image src={product.image_url} alt="Produto" />
                   </TableCell>
                   <TableCell>{product.name}</TableCell>
-                  <TableCell align="right">{product.price}</TableCell>
+                  <TableCell align="right">
+                    {formatValue(product.price)}
+                  </TableCell>
                 </TableRow>
               ))}
             </TableBody>

@@ -41,7 +41,7 @@ function Home() {
               </figure>
               <strong>{product.name}</strong>
               <div>
-                <span>{product.price}</span>
+                <span>{formatValue(product.price)}</span>
 
                 <button
                   type="button"
