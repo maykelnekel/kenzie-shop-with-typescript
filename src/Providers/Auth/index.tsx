@@ -1,29 +1,33 @@
-import { ReactNode, createContext, useContext, useState } from "react";
+import {
+  Dispatch,
+  SetStateAction,
+  ReactNode,
+  createContext,
+  useContext,
+  useState,
+} from "react";
 import { History } from "history";
 import { api } from "../../Services/api";
-interface Token {
-  token: string;
-}
 
 interface AuthProviderProps {
   children: ReactNode;
 }
 
 interface SignInProps {
-  userData: object;
-  setError: (boolean: boolean) => boolean;
+  data: object;
+  setError: Dispatch<SetStateAction<boolean>>;
   history: History;
 }
 
 interface AuthProviderData {
-  token: { token: string };
-  setAuth: any;
+  token: string;
+  setAuth: Dispatch<SetStateAction<string>>;
   signIn: (props: SignInProps) => void;
 }
 const AuthContext = createContext<AuthProviderData>({} as AuthProviderData);
 
 export const AuthProvider = ({ children }: AuthProviderProps) => {
-  const [auth, setAuth] = useState<Token>(() => {
+  const [auth, setAuth] = useState<string>(() => {
     const data = localStorage.getItem("token");
     if (data) {
       return JSON.parse(data);
@@ -31,9 +35,9 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     return "";
   });
 
-  const signIn = ({ userData, setError, history }: SignInProps) => {
+  const signIn = ({ data, setError, history }: SignInProps) => {
     api
-      .post("/sessions/", userData)
+      .post("/login/", data)
       .then((response) => {
         localStorage.setItem("token", response.data.access);
         setAuth(response.data.access);
