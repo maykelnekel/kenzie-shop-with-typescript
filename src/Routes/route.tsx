@@ -1,8 +1,9 @@
 import { Redirect, Route as ReactDOMRoute } from "react-router-dom";
+import { ComponentType } from "react";
 import { useAuth } from "../Providers/Auth";
 interface IRouteProps {
   isPrivate: boolean;
-  component: any;
+  component: ComponentType;
   path: string;
   exact: boolean;
 }
