@@ -7,22 +7,18 @@ import { useHistory } from "react-router-dom";
 import { useAuth } from "../../Providers/Auth";
 import { History } from "history";
 import { Container } from "./styles";
-import { Product } from "../../Interfaces";
 
-interface IonSubmit {
-  data: {
-    Headers: {
-      token: string;
-      email: string;
-      password: string;
-    };
-  };
-}
+type ISubmitInfos = {
+  email: string;
+  password: string;
+};
 
 function Login() {
   const { signIn, token } = useAuth();
 
   const [error, setError] = useState<boolean>(false);
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
 
   const schema = yup.object().shape({
     email: yup.string().email().required("Campo obrigatório"),
@@ -38,12 +34,19 @@ function Login() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<ISubmitInfos>({
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = ({ data }: IonSubmit) => {
+  const onSubmit = () => {
+    const data = {
+      email: email,
+      password: password,
+    };
+    console.log(data);
     signIn({ data, setError, history });
+    setEmail("");
+    setPassword("");
   };
 
   return (
@@ -51,21 +54,26 @@ function Login() {
       <form onSubmit={handleSubmit(onSubmit)}>
         <div>
           <TextField
-            {...register("test", { required: true })}
+            {...register("email", { required: true })}
             margin="normal"
             variant="outlined"
             label="email"
             name="email"
             size="small"
             color="primary"
-            error={!!errors.username}
-            helperText={errors.username?.message}
+            error={!!errors.email}
+            helperText={errors.email?.message}
+            value={email}
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+              setEmail(event.target.value)
+            }
           ></TextField>
         </div>
 
         <div>
           <TextField
-            {...register("test", { required: true })}
+            {...register("password", { required: true })}
+            type="password"
             variant="outlined"
             margin="normal"
             label="senha"
@@ -74,6 +82,10 @@ function Login() {
             name="password"
             error={!!errors.password}
             helperText={errors.password?.message}
+            value={password}
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+              setPassword(event.target.value)
+            }
           ></TextField>
         </div>
         <Button type="submit" variant="contained" color="primary" size="large">
