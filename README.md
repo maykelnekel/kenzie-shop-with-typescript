@@ -3,9 +3,9 @@ _A responsive project of a marketplace. With MaterialUI and Context Providers._
 <br>
 _**Developed in TypeScript Language**_
 
-![GitHub repo size](https://img.shields.io/github/repo-size/maykelnekel/hamburgueria-kenzie?style=for-the-badge)
-![GitHub language count](https://img.shields.io/github/languages/count/maykelnekel/hamburgueria-kenzie?style=for-the-badge)
-![GitHub forks](https://img.shields.io/github/forks/maykelnekel/hamburgueria-kenzie?style=for-the-badge)
+![GitHub repo size](https://img.shields.io/github/repo-size/maykelnekel/kenzie-shop-with-typescript?style=for-the-badge)
+![GitHub language count](https://img.shields.io/github/languages/count/maykelnekel/kenzie-shop-with-typescript?style=for-the-badge)
+![GitHub forks](https://img.shields.io/github/forks/maykelnekel/kenzie-shop-with-typescript?style=for-the-badge)
 
 > Developed on Mobile First
 # 
